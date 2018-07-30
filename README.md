@@ -1,4 +1,4 @@
-# neonlab
+# console-app-android
 
 This is a very basic example which allows you to build and run a console application on Android, no IDE is required.
 
@@ -19,8 +19,8 @@ make
 ```
 4. Copy to Android and run (does not require a rooted device)
 ```
-adb push neonlab /data/local/tmp
-adb shell "chmod +x /data/local/tmp; /data/local/tmp/neonlab"
+adb push console-app-android /data/local/tmp
+adb shell "chmod +x /data/local/tmp; /data/local/tmp/console-app-android"
 ```
 
 
