@@ -1,0 +1,7 @@
+#!/bin/sh
+
+(cd build && make)
+adb push ./build/neonlab /data/local/tmp
+adb shell "chmod +x /data/local/tmp; /data/local/tmp/neonlab"
+
+
