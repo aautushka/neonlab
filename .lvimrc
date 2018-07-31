@@ -1,0 +1,2 @@
+let g:side_search_prg = 'ag --ignore libs --ignore build --java --heading --stats -B1 -A 0'
+autocmd FileType cpp ClangFormatAutoEnable
