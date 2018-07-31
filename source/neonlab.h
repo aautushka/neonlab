@@ -1,3 +1,4 @@
+/* #undef NDEBUG */
 #include <cassert>
 
 const void* memnz_naive(const void* x, int len) {
@@ -16,18 +17,17 @@ uint32_t testnz(const void* x, int len) {
     assert(((uint64_t)x & 0xf) == 0);
     uint32_t result;
     asm volatile(R"(
-        mov r2, #16
-        vld1.8 {q0}, [%1]
-        add %1, #16
+        vld1.8 {q0}, [%1]!
         vld1.8 {q1}, [%1]
         vorr q2, q0, q1
         vorr d0, d4, d5
-        vmov.32 r0, d0[0]
+        vmov.32 %0, d0[0]
         vmov.32 r1, d0[1]
-        orr %0, r0, r1
+        orr %0, %0, r1
     )"
-                 : "=r"(result)
-                 : "r"(x), "r"(len));
+                 : "+r"(result), "+r"(x), "+r"(len)
+                 :
+                 : "cc", "memory", "q0", "q1", "r0", "r1");
     return result;
 }
 
