@@ -1,6 +1,6 @@
 #!/bin/sh
 
-(cd build && make)
+(cd build && make) || exit 1
 adb push ./build/tests/tests /data/local/tmp
 adb shell "chmod +x /data/local/tmp; /data/local/tmp/tests"
 
